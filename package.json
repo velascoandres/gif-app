@@ -26,7 +26,12 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "eqeqeq": "off",
+      "curly": "error",
+      "quotes": ["error", "single"]
+  }
   },
   "browserslist": {
     "production": [
