@@ -1,5 +1,5 @@
 import { useState, useEffect, Fragment } from 'react';
-import { IGiphyResponse } from '../interfaces/api-response.interface';
+import { getGifs } from '../helpers/getGifs';
 import { GifGridItem } from './GifGridItem';
 
 
@@ -21,24 +21,13 @@ export const GifGrid = ({ category }: IGifGridProps) => {
 
     useEffect(
         () => {
-            getGifs();
+            getGifs(category).then(imgs => setimages(imgs),);
         },
-        [],
+        [ category ],
     );
 
 
-    const getGifs = async () => {
-        const url = 'https://api.giphy.com/v1/gifs/search?api_key=ellosIXkWQTUkPvCR5qalQYT1ct1rs1f&q=Rick and Morty&limit=10'
-        const response = await fetch(url);
-        const { data }: IGiphyResponse = await response.json();
 
-        const gifs: IGif[] = data.map(img => ({
-            id: img.id,
-            title: img.title,
-            url: img.images?.downsized_medium.url,
-        }));
-        setimages(gifs);
-    };
 
 
     return (

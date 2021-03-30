@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 export interface ICategoryProps {
     setCategories: React.Dispatch<React.SetStateAction<string[]>>;
@@ -17,10 +17,10 @@ export const AddCategory = ({ setCategories }: ICategoryProps) => {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        const isAcceptable =  inputValue.trim().length > 2;
+        const isAcceptable = inputValue.trim().length > 2;
 
         if (isAcceptable) {
-            setCategories(categories => [...categories, inputValue]);
+            setCategories(categories => [inputValue, ...categories,]);
             setInputValue('');
         }
     };
