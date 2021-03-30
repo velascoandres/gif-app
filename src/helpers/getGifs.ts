@@ -1,6 +1,7 @@
+import { IGif } from '../components/GifGrid';
 import { IGiphyResponse } from '../interfaces/api-response.interface';
 
-export const getGifs = async (category: string) => {
+export const getGifs = async (category: string): Promise<IGif[]> => {
     const url = `https://api.giphy.com/v1/gifs/search?api_key=ellosIXkWQTUkPvCR5qalQYT1ct1rs1f&q=${encodeURI(category)}&limit=10`;
     const response = await fetch(url);
     const { data }: IGiphyResponse = await response.json();
