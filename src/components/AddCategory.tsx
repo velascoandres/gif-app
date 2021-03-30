@@ -1,17 +1,28 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-export const AddCategory = () => {
+export interface ICategoryProps {
+    setCategories: React.Dispatch<React.SetStateAction<string[]>>;
+};
 
-    const [inputValue, setInputValue] = useState('Hola Mundo');
+
+export const AddCategory = ({ setCategories }: ICategoryProps) => {
+
+    const [inputValue, setInputValue] = useState<string>('');
 
     const handleInput = (event: React.FormEvent<HTMLInputElement>) => {
         setInputValue(event.currentTarget.value);
     };
 
 
-    const handleSubmit = (event:  React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(inputValue);
+
+        const isAcceptable =  inputValue.trim().length > 2;
+
+        if (isAcceptable) {
+            setCategories(categories => [...categories, inputValue]);
+            setInputValue('');
+        }
     };
 
     return (
