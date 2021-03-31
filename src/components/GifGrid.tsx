@@ -22,13 +22,12 @@ export const GifGrid = ({ category }: IGifGridProps) => {
 
     return (
         <Fragment>
-            <h3>{category}</h3>
-            { loading && <p> Cargando...</p>}
+            <h3 className="animate__animated animate__fadeIn">{category}</h3>
+            { loading && <p className="animate__animated animate__flash"> Cargando...</p>}
             <div className="card-grid">
                 {
-                    images.map(image => <GifGridItem key={image.id} image={image} />)
+                    images.map((image, index: number) => <GifGridItem key={image.id} index={index} image={image} />)
                 }
-
             </div>
         </Fragment>
     );
